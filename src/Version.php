@@ -100,6 +100,12 @@ class Version
         }
     }
 
+    /**
+     * Checks if the keys of $versionArray are valid version names.
+     * @see Version::ALLOWED_NAMED_VALUES
+     * @param array $versionArray
+     * @throws EInvalidArrayVersion
+     */
     private function ensureValidNames(array $versionArray)
     {
         $keys = array_keys($versionArray);
