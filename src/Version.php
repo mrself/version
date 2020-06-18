@@ -58,6 +58,15 @@ class Version
         return $instance;
     }
 
+    /**
+     * Makes an instance from a named version array.
+     * The array should have keys as Version::ALLOWED_NAMED_VALUES
+     * and numeric values for each name (key)
+     * @see Version::ALLOWED_NAMED_VALUES
+     * @param array $versionArray
+     * @return static
+     * @throws EInvalidArrayVersion
+     */
     public static function fromArray(array $versionArray)
     {
         $instance = new static();
