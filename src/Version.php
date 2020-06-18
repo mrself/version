@@ -92,6 +92,11 @@ class Version
         }
     }
 
+    /**
+     * Checks if all values in $parts are numbers
+     * @param array $parts
+     * @throws EInvalidArrayVersion
+     */
     private function ensureValidCount(array $parts)
     {
         $filtered = array_filter($parts, 'is_numeric');
