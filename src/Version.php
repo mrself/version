@@ -38,8 +38,6 @@ class Version
     public static function fromString($source)
     {
         $instance = new static();
-//        $this->validate($source);
-//        return;
 
         if (!is_string($source)) {
             throw EInvalidArrayVersion::notString();
@@ -50,16 +48,7 @@ class Version
         }
 
         $parts = explode(static::DOTTED_VERSION_DELIMITER, $source);
-//        if (count($parts) !== static::ARRAY_PARTS_COUNT) {
-//            throw EInvalidArrayVersion::countMismatch();
-//        }
-
         $instance->ensureValidCount($parts);
-
-//        $keys = array_keys($parts);
-//        if (array_diff($keys, static::ALLOWED_NAMED_VALUES)) {
-//            throw EInvalidArrayVersion::invalidNames();
-//        }
 
         $version = array_combine(static::ALLOWED_NAMED_VALUES, $parts);
         $instance->major = (int) $version['major'];
