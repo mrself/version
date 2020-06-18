@@ -68,9 +68,15 @@ class Version
         return $instance;
     }
 
+    /**
+     * Makes a regular semver version like "1.2.3"
+     * @return string
+     */
     public function toDotted()
     {
-        return $this->major . '.' . $this->minor . '.' .$this->patch;
+        return $this->major . static::DOTTED_VERSION_DELIMITER
+            . $this->minor . static::DOTTED_VERSION_DELIMITER
+            . $this->patch;
     }
 
     private function validate($source)
