@@ -3,14 +3,14 @@
 namespace Mrself\Version\Tests\Version;
 
 use Mrself\Version\Version;
-use Mrself\Version\EInvalidArrayVersion;
+use Mrself\Version\EInvalidVersion;
 use PHPUnit\Framework\TestCase;
 
 class FromArrayTest extends TestCase
 {
     public function testExceptionIsThrownIfArrayHasInvalidCount()
     {
-        $this->expectException(EInvalidArrayVersion::class);
+        $this->expectException(EInvalidVersion::class);
         Version::fromArray([
             'major' => 1,
             'minor' => 2
@@ -19,7 +19,7 @@ class FromArrayTest extends TestCase
 
     public function testExceptionIsThrownIfArrayHasInvalidNames()
     {
-        $this->expectException(EInvalidArrayVersion::class);
+        $this->expectException(EInvalidVersion::class);
         Version::fromArray([
             'major' => 1,
             'minor' => 2,

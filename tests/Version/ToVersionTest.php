@@ -19,7 +19,7 @@ class ToVersionTest extends TestCase
      * @dataProvider getVersionMap
      * @param string $namedVersion
      * @param string $newVersion
-     * @throws \Mrself\Version\EInvalidArrayVersion
+     * @throws \Mrself\Version\EInvalidVersion
      */
     public function testItCreatesNewVersionFromDottedByNamedVersion(
         string $namedVersion,

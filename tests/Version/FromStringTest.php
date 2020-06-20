@@ -2,7 +2,7 @@
 
 namespace Mrself\Version\Tests\Version;
 
-use Mrself\Version\EInvalidArrayVersion;
+use Mrself\Version\EInvalidVersion;
 use Mrself\Version\Version;
 use PHPUnit\Framework\TestCase;
 
@@ -10,19 +10,19 @@ class FromStringTest extends TestCase
 {
     public function testExceptionIsThrownIfSomeNameIsMissing()
     {
-        $this->expectException(EInvalidArrayVersion::class);
+        $this->expectException(EInvalidVersion::class);
         Version::fromString('1.2');
     }
 
     public function testExceptionIsThrownIfSomeValueIsNotANumber()
     {
-        $this->expectException(EInvalidArrayVersion::class);
+        $this->expectException(EInvalidVersion::class);
         Version::fromString('1.nonANumber');
     }
 
     public function testExceptionIsThrownIfVersionIsEmptyString()
     {
-        $this->expectException(EInvalidArrayVersion::class);
+        $this->expectException(EInvalidVersion::class);
         Version::fromString('');
     }
 

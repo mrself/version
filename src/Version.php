@@ -40,11 +40,11 @@ class Version
         $instance = new static();
 
         if (!is_string($source)) {
-            throw EInvalidArrayVersion::notString();
+            throw EInvalidVersion::notString();
         }
 
         if (!$source) {
-            throw EInvalidArrayVersion::emptyValue();
+            throw EInvalidVersion::emptyValue();
         }
 
         $parts = explode(static::DOTTED_VERSION_DELIMITER, $source);
@@ -62,10 +62,10 @@ class Version
      * Makes an instance from a named version array.
      * The array should have keys as Version::ALLOWED_NAMED_VALUES
      * and numeric values for each name (key)
-     * @see Version::ALLOWED_NAMED_VALUES
      * @param array $versionArray
      * @return static
-     * @throws EInvalidArrayVersion
+     * @throws EInvalidVersion
+     *@see Version::ALLOWED_NAMED_VALUES
      */
     public static function fromArray(array $versionArray)
     {
@@ -108,34 +108,34 @@ class Version
 
         foreach ($errors as $error) {
             /** @var ConstraintViolation $error */
-            throw new EInvalidArrayVersion($error->__toString());
+            throw new EInvalidVersion($error->__toString());
         }
     }
 
     /**
      * Checks if all values in $parts are numbers
      * @param array $parts
-     * @throws EInvalidArrayVersion
+     * @throws EInvalidVersion
      */
     private function ensureValidCount(array $parts)
     {
         $filtered = array_filter($parts, 'is_numeric');
         if (count($filtered) !== 3) {
-            throw EInvalidArrayVersion::notNumericParts();
+            throw EInvalidVersion::notNumericParts();
         }
     }
 
     /**
      * Checks if the keys of $versionArray are valid version names.
-     * @see Version::ALLOWED_NAMED_VALUES
      * @param array $versionArray
-     * @throws EInvalidArrayVersion
+     * @throws EInvalidVersion
+     *@see Version::ALLOWED_NAMED_VALUES
      */
     private function ensureValidNames(array $versionArray)
     {
         $keys = array_keys($versionArray);
         if (array_diff($keys, static::ALLOWED_NAMED_VALUES)) {
-            throw EInvalidArrayVersion::invalidNames();
+            throw EInvalidVersion::invalidNames();
         }
     }
 
