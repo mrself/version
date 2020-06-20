@@ -77,7 +77,7 @@ class Version
         return $instance;
     }
 
-    public static function isNamedVersion(string $version): bool
+    public function isNamedVersion(string $version): bool
     {
         return in_array($version, static::ALLOWED_NAMED_VALUES);
     }
@@ -150,5 +150,14 @@ class Version
         }
 
         return $this;
+    }
+
+    public function toVersion($newVersion): string
+    {
+        if ($this->isNamedVersion($newVersion)) {
+            return $this->updateByName($newVersion)->toDotted();
+        }
+
+        return $newVersion;
     }
 }
