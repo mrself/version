@@ -77,6 +77,11 @@ class Version
         return $instance;
     }
 
+    public static function isNamedVersion(string $version): bool
+    {
+        return in_array($version, static::ALLOWED_NAMED_VALUES);
+    }
+
     /**
      * Makes a regular semver version like "1.2.3"
      * @return string
@@ -132,5 +137,18 @@ class Version
         if (array_diff($keys, static::ALLOWED_NAMED_VALUES)) {
             throw EInvalidArrayVersion::invalidNames();
         }
+    }
+
+    public function updateByName(string $name)
+    {
+        $this->$name++;
+        $index = array_search($name, static::ALLOWED_NAMED_VALUES);
+
+        $nextVersions = array_slice(static::ALLOWED_NAMED_VALUES, $index + 1);
+        foreach ($nextVersions as $version) {
+            $this->$version = 0;
+        }
+
+        return $this;
     }
 }
