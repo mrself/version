@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Mrself\Version\BumpVersionCommand;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+$application->add(new BumpVersionCommand(getcwd()));
+$application->setDefaultCommand('app:bump_version', true);
+$application->setCatchExceptions(false);
+$application->run();
